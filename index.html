@@ -1,13 +1,21 @@
 ```html
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Crucigrama - 5 Niveles</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Crucigrama - 5 niveles</title>
 
 <style>
+
+/* =========================
+   ESTILO GENERAL
+========================= */
 
 * {
     box-sizing: border-box;
@@ -28,7 +36,7 @@ header {
 }
 
 header h1 {
-    margin: 0;
+    margin: 0 0 5px;
 }
 
 .contenedor {
@@ -37,7 +45,10 @@ header h1 {
     padding: 20px;
 }
 
-/* NIVELES */
+
+/* =========================
+   NIVELES
+========================= */
 
 .niveles {
     display: flex;
@@ -58,7 +69,7 @@ header h1 {
 }
 
 .nivel:hover {
-    background: #e4e0ff;
+    background: #e6e2ff;
 }
 
 .nivel.activo {
@@ -66,7 +77,10 @@ header h1 {
     color: white;
 }
 
-/* JUEGO */
+
+/* =========================
+   JUEGO
+========================= */
 
 .juego {
     display: flex;
@@ -76,7 +90,10 @@ header h1 {
     flex-wrap: wrap;
 }
 
-/* TABLERO */
+
+/* =========================
+   TABLERO
+========================= */
 
 #crucigrama {
     display: grid;
@@ -96,50 +113,78 @@ header h1 {
     background: #222;
 }
 
+
+/* =========================
+   CASILLAS PARA ESCRIBIR
+========================= */
+
 .celda input {
     width: 100%;
     height: 100%;
+
     border: none;
     outline: none;
+
     text-align: center;
-    font-size: 22px;
+
+    font-size: 21px;
     font-weight: bold;
+
     text-transform: uppercase;
+
     background: white;
+
+    padding-top: 5px;
 }
 
-/* NÚMERO */
+
+/* =========================
+   NÚMERO DE INICIO
+========================= */
 
 .numero {
     position: absolute;
+
     top: 2px;
     left: 3px;
+
     font-size: 10px;
     font-weight: bold;
-    color: #444;
-    z-index: 2;
+
+    color: #555;
+
+    z-index: 5;
+
     pointer-events: none;
 }
 
-/* PISTAS */
+
+/* =========================
+   PISTAS
+========================= */
 
 .pistas {
-    width: 370px;
+    width: 390px;
+
     background: white;
+
     padding: 20px;
+
     border-radius: 15px;
+
     text-align: left;
+
     box-shadow: 0 3px 10px #bbb;
 }
 
 .pistas h2 {
-    color: #5b4bdb;
     margin-top: 0;
+    color: #5b4bdb;
 }
 
 .pistas h3 {
     border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
 }
 
 .pista {
@@ -147,20 +192,34 @@ header h1 {
     line-height: 1.4;
 }
 
+
+/* =========================
+   NÚMEROS DE LAS PISTAS
+========================= */
+
 .numero-pista {
     display: inline-block;
+
     background: #5b4bdb;
     color: white;
+
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+
+    width: 27px;
+    height: 27px;
+
     text-align: center;
-    line-height: 25px;
-    margin-right: 6px;
+    line-height: 27px;
+
+    margin-right: 7px;
+
     font-weight: bold;
 }
 
-/* BOTONES */
+
+/* =========================
+   BOTONES
+========================= */
 
 .botones {
     margin-top: 25px;
@@ -168,12 +227,19 @@ header h1 {
 
 .botones button {
     border: none;
+
     padding: 12px 22px;
+
     margin: 5px;
+
     border-radius: 10px;
+
     cursor: pointer;
+
     font-weight: bold;
+
     color: white;
+
     font-size: 15px;
 }
 
@@ -185,12 +251,25 @@ header h1 {
     background: #dc3545;
 }
 
+
+/* =========================
+   MENSAJE
+========================= */
+
 #mensaje {
     margin-top: 15px;
+
     font-size: 18px;
+
     font-weight: bold;
-    min-height: 25px;
+
+    min-height: 28px;
 }
+
+
+/* =========================
+   RESPUESTAS
+========================= */
 
 .correcta {
     background: #b8f5bd !important;
@@ -200,7 +279,10 @@ header h1 {
     background: #ffb3b3 !important;
 }
 
-/* CELULAR */
+
+/* =========================
+   CELULAR
+========================= */
 
 @media (max-width: 600px) {
 
@@ -210,7 +292,7 @@ header h1 {
     }
 
     .celda input {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .numero {
@@ -223,49 +305,71 @@ header h1 {
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
 <h1>🧩 Crucigrama</h1>
 
-<p>Completa los 5 niveles</p>
+<p>¡Completa los 5 niveles!</p>
 
 </header>
 
+
 <div class="contenedor">
+
+
+<!-- =========================
+     BOTONES DE NIVELES
+========================= -->
 
 <div class="niveles">
 
-<button class="nivel activo" onclick="cargarNivel(0)">
+<button class="nivel activo"
+onclick="cargarNivel(0)">
 Nivel 1
 </button>
 
-<button class="nivel" onclick="cargarNivel(1)">
+<button class="nivel"
+onclick="cargarNivel(1)">
 Nivel 2
 </button>
 
-<button class="nivel" onclick="cargarNivel(2)">
+<button class="nivel"
+onclick="cargarNivel(2)">
 Nivel 3
 </button>
 
-<button class="nivel" onclick="cargarNivel(3)">
+<button class="nivel"
+onclick="cargarNivel(3)">
 Nivel 4
 </button>
 
-<button class="nivel" onclick="cargarNivel(4)">
+<button class="nivel"
+onclick="cargarNivel(4)">
 Nivel 5
 </button>
 
 </div>
 
+
 <h2 id="tituloNivel"></h2>
+
 
 <div class="juego">
 
+
+<!-- TABLERO -->
+
 <div id="crucigrama"></div>
+
+
+<!-- PISTAS -->
 
 <div class="pistas">
 
@@ -275,705 +379,1004 @@ Nivel 5
 
 <div id="horizontales"></div>
 
+
 <h3>⬇️ Verticales</h3>
 
 <div id="verticales"></div>
 
 </div>
 
+
 </div>
+
+
+<!-- BOTONES -->
 
 <div class="botones">
 
-<button id="comprobar" onclick="comprobar()">
+<button id="comprobar"
+onclick="comprobar()">
+
 ✅ Comprobar
+
 </button>
 
-<button id="reiniciar" onclick="reiniciar()">
+
+<button id="reiniciar"
+onclick="reiniciar()">
+
 🔄 Reiniciar
+
 </button>
 
 </div>
 
+
 <div id="mensaje"></div>
+
 
 </div>
 
 
 <script>
 
-/* ======================================================
-   NIVELES
-   Las palabras ahora están colocadas para que
-   los cruces tengan letras iguales.
-====================================================== */
+
+/* =====================================================
+   DATOS DE LOS 5 NIVELES
+
+   IMPORTANTE:
+   Las palabras están colocadas para que los cruces
+   compartan exactamente la misma letra.
+===================================================== */
+
 
 const niveles = [
 
-/* ==========================
+/* =====================================================
    NIVEL 1
-========================== */
+===================================================== */
 
 {
-nombre: "Nivel 1 - Fácil",
+    nombre: "Nivel 1 - Fácil",
 
-filas: 7,
-columnas: 7,
+    filas: 15,
+    columnas: 17,
 
-palabras: [
+    palabras: [
 
-{
-numero: 1,
-palabra: "GATO",
-fila: 1,
-columna: 1,
-direccion: "H",
-pista: "Animal que maúlla."
+        {
+            numero: 1,
+            palabra: "PLANETAS",
+            fila: 7,
+            columna: 4,
+            direccion: "H",
+            pista: "Cuerpos celestes que giran alrededor de una estrella."
+        },
+
+        {
+            numero: 2,
+            palabra: "PERRO",
+            fila: 7,
+            columna: 4,
+            direccion: "V",
+            pista: "Animal doméstico conocido como el mejor amigo del ser humano."
+        },
+
+        {
+            numero: 3,
+            palabra: "LUNA",
+            fila: 7,
+            columna: 5,
+            direccion: "V",
+            pista: "Cuerpo celeste que vemos principalmente durante la noche."
+        },
+
+        {
+            numero: 4,
+            palabra: "ARBOL",
+            fila: 7,
+            columna: 6,
+            direccion: "V",
+            pista: "Planta grande que tiene tronco y ramas."
+        },
+
+        {
+            numero: 5,
+            palabra: "NUBE",
+            fila: 7,
+            columna: 7,
+            direccion: "V",
+            pista: "Se encuentra en el cielo y está formada por pequeñas gotas de agua."
+        },
+
+        {
+            numero: 6,
+            palabra: "ESCUELA",
+            fila: 7,
+            columna: 8,
+            direccion: "V",
+            pista: "Lugar donde los estudiantes aprenden."
+        },
+
+        {
+            numero: 7,
+            palabra: "TIGRE",
+            fila: 7,
+            columna: 9,
+            direccion: "V",
+            pista: "Gran felino con rayas."
+        },
+
+        {
+            numero: 8,
+            palabra: "AVION",
+            fila: 7,
+            columna: 10,
+            direccion: "V",
+            pista: "Medio de transporte que vuela."
+        },
+
+        {
+            numero: 9,
+            palabra: "SOL",
+            fila: 7,
+            columna: 11,
+            direccion: "V",
+            pista: "Estrella que proporciona luz y calor a la Tierra."
+        }
+
+    ]
 },
 
-{
-numero: 2,
-palabra: "SOL",
-fila: 0,
-columna: 3,
-direccion: "V",
-pista: "Estrella que ilumina la Tierra."
-},
 
-{
-numero: 3,
-palabra: "OSO",
-fila: 3,
-columna: 1,
-direccion: "H",
-pista: "Animal grande que puede vivir en bosques."
-},
-
-{
-numero: 4,
-palabra: "ROJO",
-fila: 1,
-columna: 5,
-direccion: "V",
-pista: "Color de una manzana madura."
-
-}
-
-]
-},
-
-/* ==========================
+/* =====================================================
    NIVEL 2
-========================== */
+===================================================== */
 
 {
-nombre: "Nivel 2 - Fácil",
+    nombre: "Nivel 2 - Fácil",
 
-filas: 9,
-columnas: 9,
+    filas: 17,
+    columnas: 19,
 
-palabras: [
+    palabras: [
 
-{
-numero: 1,
-palabra: "LUNA",
-fila: 2,
-columna: 1,
-direccion: "H",
-pista: "Se puede observar durante la noche."
+        {
+            numero: 1,
+            palabra: "EDUCACION",
+            fila: 8,
+            columna: 5,
+            direccion: "H",
+            pista: "Proceso mediante el cual aprendemos conocimientos y habilidades."
+        },
+
+        {
+            numero: 2,
+            palabra: "ESTRELLA",
+            fila: 8,
+            columna: 5,
+            direccion: "V",
+            pista: "Objeto brillante que podemos observar en el cielo."
+        },
+
+        {
+            numero: 3,
+            palabra: "DADO",
+            fila: 8,
+            columna: 6,
+            direccion: "V",
+            pista: "Objeto pequeño usado en algunos juegos."
+        },
+
+        {
+            numero: 4,
+            palabra: "UNIVERSO",
+            fila: 8,
+            columna: 7,
+            direccion: "V",
+            pista: "Todo lo que existe: espacio, materia y energía."
+        },
+
+        {
+            numero: 5,
+            palabra: "CASA",
+            fila: 8,
+            columna: 8,
+            direccion: "V",
+            pista: "Lugar donde vive una persona o familia."
+        },
+
+        {
+            numero: 6,
+            palabra: "ARBOL",
+            fila: 8,
+            columna: 9,
+            direccion: "V",
+            pista: "Planta de gran tamaño con tronco."
+        },
+
+        {
+            numero: 7,
+            palabra: "ISLA",
+            fila: 8,
+            columna: 11,
+            direccion: "V",
+            pista: "Porción de tierra rodeada de agua."
+        },
+
+        {
+            numero: 8,
+            palabra: "OSO",
+            fila: 8,
+            columna: 12,
+            direccion: "V",
+            pista: "Animal grande que puede vivir en bosques."
+        },
+
+        {
+            numero: 9,
+            palabra: "NUBE",
+            fila: 8,
+            columna: 13,
+            direccion: "V",
+            pista: "Masa visible de pequeñas gotas de agua en el cielo."
+        }
+
+    ]
 },
 
-{
-numero: 2,
-palabra: "MAR",
-fila: 1,
-columna: 3,
-direccion: "V",
-pista: "Gran extensión de agua salada."
-},
 
-{
-numero: 3,
-palabra: "PERRO",
-fila: 5,
-columna: 1,
-direccion: "H",
-pista: "Animal conocido como el mejor amigo del ser humano."
-},
-
-{
-numero: 4,
-palabra: "RANA",
-fila: 3,
-columna: 5,
-direccion: "V",
-pista: "Animal que salta y puede vivir cerca del agua."
-
-}
-
-]
-},
-
-/* ==========================
+/* =====================================================
    NIVEL 3
-========================== */
+===================================================== */
 
 {
-nombre: "Nivel 3 - Medio",
+    nombre: "Nivel 3 - Medio",
 
-filas: 10,
-columnas: 10,
+    filas: 17,
+    columnas: 19,
 
-palabras: [
+    palabras: [
 
-{
-numero: 1,
-palabra: "ESCUELA",
-fila: 2,
-columna: 1,
-direccion: "H",
-pista: "Lugar donde los estudiantes aprenden."
+        {
+            numero: 1,
+            palabra: "AVENTURA",
+            fila: 8,
+            columna: 5,
+            direccion: "H",
+            pista: "Experiencia emocionante o fuera de lo común."
+        },
+
+        {
+            numero: 2,
+            palabra: "ARBOL",
+            fila: 8,
+            columna: 5,
+            direccion: "V",
+            pista: "Planta que tiene tronco, ramas y hojas."
+        },
+
+        {
+            numero: 3,
+            palabra: "VIAJE",
+            fila: 8,
+            columna: 6,
+            direccion: "V",
+            pista: "Traslado de una persona de un lugar a otro."
+        },
+
+        {
+            numero: 4,
+            palabra: "ESTRELLA",
+            fila: 8,
+            columna: 7,
+            direccion: "V",
+            pista: "Cuerpo celeste que produce su propia luz."
+        },
+
+        {
+            numero: 5,
+            palabra: "NUBE",
+            fila: 8,
+            columna: 8,
+            direccion: "V",
+            pista: "Formación blanca o gris que aparece en el cielo."
+        },
+
+        {
+            numero: 6,
+            palabra: "TIGRE",
+            fila: 8,
+            columna: 9,
+            direccion: "V",
+            pista: "Felino grande caracterizado por sus rayas."
+        },
+
+        {
+            numero: 7,
+            palabra: "URBANO",
+            fila: 8,
+            columna: 10,
+            direccion: "V",
+            pista: "Relacionado con una ciudad."
+        },
+
+        {
+            numero: 8,
+            palabra: "RANA",
+            fila: 8,
+            columna: 11,
+            direccion: "V",
+            pista: "Animal que salta y suele vivir cerca del agua."
+        },
+
+        {
+            numero: 9,
+            palabra: "AMIGO",
+            fila: 8,
+            columna: 12,
+            direccion: "V",
+            pista: "Persona con quien tenemos una relación de amistad."
+        }
+
+    ]
 },
 
-{
-numero: 2,
-palabra: "LIBRO",
-fila: 1,
-columna: 3,
-direccion: "V",
-pista: "Tiene páginas y sirve para leer."
-},
 
-{
-numero: 3,
-palabra: "MUSICA",
-fila: 6,
-columna: 1,
-direccion: "H",
-pista: "Arte que utiliza sonidos."
-},
-
-{
-numero: 4,
-palabra: "AMIGO",
-fila: 2,
-columna: 7,
-direccion: "V",
-pista: "Persona cercana en quien puedes confiar."
-
-}
-
-]
-},
-
-/* ==========================
+/* =====================================================
    NIVEL 4
-========================== */
+===================================================== */
 
 {
-nombre: "Nivel 4 - Difícil",
+    nombre: "Nivel 4 - Difícil",
 
-filas: 11,
-columnas: 11,
+    filas: 18,
+    columnas: 20,
 
-palabras: [
+    palabras: [
 
-{
-numero: 1,
-palabra: "PLANETA",
-fila: 3,
-columna: 1,
-direccion: "H",
-pista: "Cuerpo celeste que gira alrededor de una estrella."
+        {
+            numero: 1,
+            palabra: "CULTURAS",
+            fila: 9,
+            columna: 5,
+            direccion: "H",
+            pista: "Conjunto de costumbres, conocimientos y tradiciones de un grupo."
+        },
+
+        {
+            numero: 2,
+            palabra: "CIELO",
+            fila: 9,
+            columna: 5,
+            direccion: "V",
+            pista: "Espacio que observamos sobre nosotros."
+        },
+
+        {
+            numero: 3,
+            palabra: "UNIVERSO",
+            fila: 9,
+            columna: 6,
+            direccion: "V",
+            pista: "Conjunto de todo lo que existe."
+        },
+
+        {
+            numero: 4,
+            palabra: "LUNA",
+            fila: 9,
+            columna: 7,
+            direccion: "V",
+            pista: "Satélite natural de la Tierra."
+        },
+
+        {
+            numero: 5,
+            palabra: "TIGRE",
+            fila: 9,
+            columna: 8,
+            direccion: "V",
+            pista: "Felino grande de pelaje rayado."
+        },
+
+        {
+            numero: 6,
+            palabra: "UNICORNIO",
+            fila: 9,
+            columna: 9,
+            direccion: "V",
+            pista: "Criatura fantástica representada como un caballo con un cuerno."
+        },
+
+        {
+            numero: 7,
+            palabra: "RANA",
+            fila: 9,
+            columna: 10,
+            direccion: "V",
+            pista: "Anfibio que puede saltar."
+        },
+
+        {
+            numero: 8,
+            palabra: "ARBOL",
+            fila: 9,
+            columna: 11,
+            direccion: "V",
+            pista: "Planta grande con tronco y ramas."
+        },
+
+        {
+            numero: 9,
+            palabra: "SOL",
+            fila: 9,
+            columna: 12,
+            direccion: "V",
+            pista: "Estrella alrededor de la cual gira la Tierra."
+        }
+
+    ]
 },
 
-{
-numero: 2,
-palabra: "ESTRELLA",
-fila: 1,
-columna: 3,
-direccion: "V",
-pista: "Objeto brillante que podemos observar en el cielo."
-},
 
-{
-numero: 3,
-palabra: "ANIMAL",
-fila: 7,
-columna: 1,
-direccion: "H",
-pista: "Ser vivo que no es una planta."
-},
-
-{
-numero: 4,
-palabra: "NATURALEZA",
-fila: 1,
-columna: 7,
-direccion: "V",
-pista: "Conjunto de seres y elementos naturales."
-
-}
-
-]
-},
-
-/* ==========================
+/* =====================================================
    NIVEL 5
-========================== */
+===================================================== */
 
 {
-nombre: "Nivel 5 - Experto",
+    nombre: "Nivel 5 - Experto",
 
-filas: 12,
-columnas: 12,
+    filas: 20,
+    columnas: 22,
 
-palabras: [
+    palabras: [
 
-{
-numero: 1,
-palabra: "TECNOLOGIA",
-fila: 4,
-columna: 1,
-direccion: "H",
-pista: "Conjunto de conocimientos y herramientas creadas por las personas."
-},
+        {
+            numero: 1,
+            palabra: "TECNOLOGIA",
+            fila: 10,
+            columna: 4,
+            direccion: "H",
+            pista: "Conjunto de conocimientos y herramientas creadas por las personas."
+        },
 
-{
-numero: 2,
-palabra: "INTERNET",
-fila: 1,
-columna: 5,
-direccion: "V",
-pista: "Red mundial que conecta computadoras y dispositivos."
-},
+        {
+            numero: 2,
+            palabra: "TIGRE",
+            fila: 10,
+            columna: 4,
+            direccion: "V",
+            pista: "Felino grande conocido por sus rayas."
+        },
 
-{
-numero: 3,
-palabra: "CIENCIA",
-fila: 8,
-columna: 2,
-direccion: "H",
-pista: "Conocimiento obtenido mediante la observación y experimentación."
-},
+        {
+            numero: 3,
+            palabra: "ENERGIA",
+            fila: 10,
+            columna: 5,
+            direccion: "V",
+            pista: "Capacidad para producir cambios o realizar trabajo."
+        },
 
-{
-numero: 4,
-palabra: "UNIVERSO",
-fila: 1,
-columna: 10,
-direccion: "V",
-pista: "Todo lo que existe: espacio, materia y energía."
+        {
+            numero: 4,
+            palabra: "CASA",
+            fila: 10,
+            columna: 6,
+            direccion: "V",
+            pista: "Lugar donde vive una persona o familia."
+        },
 
-}
+        {
+            numero: 5,
+            palabra: "NATURALEZA",
+            fila: 10,
+            columna: 7,
+            direccion: "V",
+            pista: "Conjunto de seres y elementos del mundo natural."
+        },
 
-]
+        {
+            numero: 6,
+            palabra: "OCEANO",
+            fila: 10,
+            columna: 8,
+            direccion: "V",
+            pista: "Gran extensión de agua salada."
+        },
 
+        {
+            numero: 7,
+            palabra: "LUNA",
+            fila: 10,
+            columna: 9,
+            direccion: "V",
+            pista: "Satélite natural de la Tierra."
+        },
+
+        {
+            numero: 8,
+            palabra: "GATO",
+            fila: 10,
+            columna: 11,
+            direccion: "V",
+            pista: "Animal doméstico que suele maullar."
+        },
+
+        {
+            numero: 9,
+            palabra: "ISLA",
+            fila: 10,
+            columna: 12,
+            direccion: "V",
+            pista: "Porción de tierra rodeada de agua."
+        },
+
+        {
+            numero: 10,
+            palabra: "ARBOL",
+            fila: 10,
+            columna: 13,
+            direccion: "V",
+            pista: "Planta grande con tronco y ramas."
+        }
+
+    ]
 }
 
 ];
 
 
-/* ======================================================
+/* =====================================================
    VARIABLES
-====================================================== */
+===================================================== */
 
 let nivelActual = 0;
 
 let solucion = [];
 
 
-/* ======================================================
+/* =====================================================
    CARGAR NIVEL
-====================================================== */
+===================================================== */
 
 function cargarNivel(numero) {
 
-nivelActual = numero;
+    nivelActual = numero;
 
-const nivel = niveles[numero];
+    const nivel = niveles[numero];
 
-document.getElementById("tituloNivel").textContent =
-nivel.nombre;
-
-
-/* Activar botón */
-
-document.querySelectorAll(".nivel").forEach((boton, i) => {
-
-boton.classList.toggle(
-"activo",
-i === numero
-);
-
-});
+    document.getElementById("tituloNivel").textContent =
+        nivel.nombre;
 
 
-const tablero =
-document.getElementById("crucigrama");
+    /* Activar botón del nivel */
 
-tablero.innerHTML = "";
+    document.querySelectorAll(".nivel").forEach((boton, i) => {
 
+        boton.classList.toggle(
+            "activo",
+            i === numero
+        );
 
-/* Tamaño */
-
-let tamaño = window.innerWidth <= 600 ? 32 : 44;
-
-tablero.style.gridTemplateColumns =
-`repeat(${nivel.columnas}, ${tamaño}px)`;
+    });
 
 
-/* ======================================================
-   CREAR MATRIZ
-====================================================== */
+    const tablero =
+        document.getElementById("crucigrama");
 
-solucion = [];
+    tablero.innerHTML = "";
 
-for(let f = 0; f < nivel.filas; f++) {
 
-solucion[f] = [];
+    /* Tamaño de las casillas */
 
-for(let c = 0; c < nivel.columnas; c++) {
+    const tamaño =
+        window.innerWidth <= 600 ? 32 : 44;
 
-solucion[f][c] = null;
+
+    tablero.style.gridTemplateColumns =
+        `repeat(${nivel.columnas}, ${tamaño}px)`;
+
+
+    /* =================================================
+       CREAR MATRIZ
+    ================================================= */
+
+    solucion = [];
+
+    for (let f = 0; f < nivel.filas; f++) {
+
+        solucion[f] = [];
+
+        for (let c = 0; c < nivel.columnas; c++) {
+
+            solucion[f][c] = null;
+
+        }
+
+    }
+
+
+    /* =================================================
+       COLOCAR TODAS LAS PALABRAS
+    ================================================= */
+
+    nivel.palabras.forEach(item => {
+
+        for (
+            let i = 0;
+            i < item.palabra.length;
+            i++
+        ) {
+
+            let f = item.fila;
+            let c = item.columna;
+
+
+            if (item.direccion === "H") {
+
+                c += i;
+
+            } else {
+
+                f += i;
+
+            }
+
+
+            /*
+               Si ya existe una letra en esa casilla,
+               comprobamos que sea la misma.
+            */
+
+            if (solucion[f][c] !== null) {
+
+                if (solucion[f][c] !== item.palabra[i]) {
+
+                    console.error(
+                        "Error de cruce:",
+                        item.palabra
+                    );
+
+                }
+
+            } else {
+
+                solucion[f][c] =
+                    item.palabra[i];
+
+            }
+
+        }
+
+    });
+
+
+    /* =================================================
+       CREAR TABLERO
+    ================================================= */
+
+    for (let f = 0; f < nivel.filas; f++) {
+
+        for (let c = 0; c < nivel.columnas; c++) {
+
+            const celda =
+                document.createElement("div");
+
+            celda.className = "celda";
+
+
+            /* Buscar si aquí comienza una palabra */
+
+            const palabrasInicio =
+                nivel.palabras.filter(item =>
+                    item.fila === f &&
+                    item.columna === c
+                );
+
+
+            /* CASILLA NEGRA */
+
+            if (solucion[f][c] === null) {
+
+                celda.classList.add("negra");
+
+            }
+
+
+            /* CASILLA CON LETRA */
+
+            else {
+
+                /*
+                   Si empieza una o más palabras,
+                   mostrar su número.
+                */
+
+                if (palabrasInicio.length > 0) {
+
+                    const numero =
+                        document.createElement("span");
+
+                    numero.className = "numero";
+
+                    numero.textContent =
+                        palabrasInicio
+                            .map(p => p.numero)
+                            .join("/");
+
+                    celda.appendChild(numero);
+
+                }
+
+
+                /* Crear campo de texto */
+
+                const input =
+                    document.createElement("input");
+
+                input.maxLength = 1;
+
+                input.dataset.fila = f;
+
+                input.dataset.columna = c;
+
+
+                /* Escribir en mayúsculas */
+
+                input.addEventListener(
+                    "input",
+                    function() {
+
+                        this.value =
+                            this.value.toUpperCase();
+
+                        this.classList.remove(
+                            "correcta",
+                            "incorrecta"
+                        );
+
+
+                        /* Avanzar automáticamente */
+
+                        if (this.value !== "") {
+
+                            moverSiguiente(this);
+
+                        }
+
+                    }
+                );
+
+
+                celda.appendChild(input);
+
+            }
+
+
+            tablero.appendChild(celda);
+
+        }
+
+    }
+
+
+    mostrarPistas(nivel);
+
+    document.getElementById("mensaje").textContent = "";
 
 }
 
-}
 
-
-/* ======================================================
-   COLOCAR PALABRAS
-====================================================== */
-
-nivel.palabras.forEach(item => {
-
-for(let i = 0; i < item.palabra.length; i++) {
-
-let f = item.fila;
-let c = item.columna;
-
-
-/* Horizontal */
-
-if(item.direccion === "H") {
-
-c += i;
-
-}
-
-/* Vertical */
-
-else {
-
-f += i;
-
-}
-
-
-/* Guardar letra */
-
-if(
-f >= 0 &&
-f < nivel.filas &&
-c >= 0 &&
-c < nivel.columnas
-) {
-
-solucion[f][c] =
-item.palabra[i];
-
-}
-
-}
-
-});
-
-
-/* ======================================================
-   CREAR TABLERO
-====================================================== */
-
-for(let f = 0; f < nivel.filas; f++) {
-
-for(let c = 0; c < nivel.columnas; c++) {
-
-const celda =
-document.createElement("div");
-
-celda.className = "celda";
-
-
-/* Buscar palabra que comienza aquí */
-
-const palabraInicio =
-nivel.palabras.find(item =>
-item.fila === f &&
-item.columna === c
-);
-
-
-/* Casilla negra */
-
-if(solucion[f][c] === null) {
-
-celda.classList.add("negra");
-
-}
-
-
-/* Casilla de respuesta */
-
-else {
-
-/* Número */
-
-if(palabraInicio) {
-
-const numero =
-document.createElement("span");
-
-numero.className = "numero";
-
-numero.textContent =
-palabraInicio.numero;
-
-celda.appendChild(numero);
-
-}
-
-
-/* Input */
-
-const input =
-document.createElement("input");
-
-input.maxLength = 1;
-
-input.dataset.fila = f;
-
-input.dataset.columna = c;
-
-
-/* Pasar automáticamente a la siguiente casilla */
-
-input.addEventListener("input", function() {
-
-this.value =
-this.value.toUpperCase();
-
-this.classList.remove(
-"correcta",
-"incorrecta"
-);
-
-if(this.value !== "") {
-
-moverSiguiente(this);
-
-}
-
-});
-
-
-celda.appendChild(input);
-
-}
-
-
-tablero.appendChild(celda);
-
-}
-
-}
-
-
-mostrarPistas(nivel);
-
-document.getElementById("mensaje").textContent = "";
-
-}
-
-
-/* ======================================================
+/* =====================================================
    PASAR A LA SIGUIENTE CASILLA
-====================================================== */
+===================================================== */
 
 function moverSiguiente(inputActual) {
 
-const inputs =
-Array.from(
-document.querySelectorAll("#crucigrama input")
-);
+    const inputs =
+        Array.from(
+            document.querySelectorAll(
+                "#crucigrama input"
+            )
+        );
 
-const posicion =
-inputs.indexOf(inputActual);
 
-if(posicion < inputs.length - 1) {
+    const posicion =
+        inputs.indexOf(inputActual);
 
-inputs[posicion + 1].focus();
+
+    if (
+        posicion >= 0 &&
+        posicion < inputs.length - 1
+    ) {
+
+        inputs[posicion + 1].focus();
+
+    }
 
 }
 
-}
 
-
-/* ======================================================
-   PISTAS
-====================================================== */
+/* =====================================================
+   MOSTRAR PISTAS
+===================================================== */
 
 function mostrarPistas(nivel) {
 
-const horizontales =
-document.getElementById("horizontales");
+    const horizontales =
+        document.getElementById("horizontales");
 
-const verticales =
-document.getElementById("verticales");
-
-horizontales.innerHTML = "";
-
-verticales.innerHTML = "";
+    const verticales =
+        document.getElementById("verticales");
 
 
-nivel.palabras.forEach(item => {
+    horizontales.innerHTML = "";
 
-const div =
-document.createElement("div");
-
-div.className = "pista";
+    verticales.innerHTML = "";
 
 
-div.innerHTML =
+    nivel.palabras.forEach(item => {
 
-`<span class="numero-pista">
-${item.numero}
-</span>
+        const div =
+            document.createElement("div");
 
-${item.pista}`;
+        div.className = "pista";
 
 
-if(item.direccion === "H") {
+        div.innerHTML =
 
-horizontales.appendChild(div);
+        `<span class="numero-pista">
+            ${item.numero}
+        </span>
+
+        ${item.pista}`;
+
+
+        if (item.direccion === "H") {
+
+            horizontales.appendChild(div);
+
+        } else {
+
+            verticales.appendChild(div);
+
+        }
+
+    });
 
 }
 
-else {
 
-verticales.appendChild(div);
-
-}
-
-});
-
-}
-
-
-/* ======================================================
-   COMPROBAR
-====================================================== */
+/* =====================================================
+   COMPROBAR RESPUESTAS
+===================================================== */
 
 function comprobar() {
 
-const inputs =
-document.querySelectorAll(
-"#crucigrama input"
-);
-
-let correctas = 0;
-
-const total = inputs.length;
+    const inputs =
+        document.querySelectorAll(
+            "#crucigrama input"
+        );
 
 
-inputs.forEach(input => {
+    let correctas = 0;
 
-const f =
-input.dataset.fila;
-
-const c =
-input.dataset.columna;
+    const total = inputs.length;
 
 
-if(
-input.value.toUpperCase() ===
-solucion[f][c]
-) {
+    inputs.forEach(input => {
 
-input.classList.add("correcta");
+        const f =
+            Number(input.dataset.fila);
 
-input.classList.remove("incorrecta");
+        const c =
+            Number(input.dataset.columna);
 
-correctas++;
+
+        const letraCorrecta =
+            solucion[f][c];
+
+
+        if (
+            input.value.toUpperCase() ===
+            letraCorrecta
+        ) {
+
+            input.classList.add("correcta");
+
+            input.classList.remove("incorrecta");
+
+            correctas++;
+
+        }
+
+        else {
+
+            input.classList.add("incorrecta");
+
+            input.classList.remove("correcta");
+
+        }
+
+    });
+
+
+    const mensaje =
+        document.getElementById("mensaje");
+
+
+    if (correctas === total) {
+
+        mensaje.textContent =
+            "🎉 ¡Felicidades! ¡Completaste el nivel!";
+
+
+        if (nivelActual < niveles.length - 1) {
+
+            setTimeout(() => {
+
+                alert(
+                    "🎉 ¡Nivel completado! Puedes pasar al siguiente nivel."
+                );
+
+            }, 200);
+
+        }
+
+    }
+
+    else {
+
+        mensaje.textContent =
+            `🔎 Tienes ${correctas} de ${total} letras correctas.`;
+
+    }
 
 }
 
-else {
 
-input.classList.add("incorrecta");
-
-input.classList.remove("correcta");
-
-}
-
-});
-
-
-const mensaje =
-document.getElementById("mensaje");
-
-
-if(correctas === total) {
-
-mensaje.textContent =
-"🎉 ¡Excelente! ¡Completaste el nivel!";
-
-}
-
-else {
-
-mensaje.textContent =
-`🔎 ${correctas} de ${total} letras correctas.`;
-
-}
-
-}
-
-
-/* ======================================================
+/* =====================================================
    REINICIAR
-====================================================== */
+===================================================== */
 
 function reiniciar() {
 
-const inputs =
-document.querySelectorAll(
-"#crucigrama input"
-);
+    const inputs =
+        document.querySelectorAll(
+            "#crucigrama input"
+        );
 
 
-inputs.forEach(input => {
+    inputs.forEach(input => {
 
-input.value = "";
+        input.value = "";
 
-input.classList.remove(
-"correcta",
-"incorrecta"
-);
+        input.classList.remove(
+            "correcta",
+            "incorrecta"
+        );
 
-});
+    });
 
 
-document.getElementById("mensaje").textContent = "";
+    document.getElementById(
+        "mensaje"
+    ).textContent = "";
 
 }
 
 
-/* INICIAR */
+/* =====================================================
+   INICIAR EL JUEGO
+===================================================== */
 
 cargarNivel(0);
 
 </script>
 
 </body>
+
 </html>
 ```
